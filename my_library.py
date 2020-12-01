@@ -19,14 +19,12 @@ def average(number_list):
 def compute_sigma(number_list):
   diff_squared_list = [] 
   n = len(number_list)
-
   for i in range(n):
     item = number_list[i]
     summation = sum(number_list)
     mean = summation/len(number_list)
     sqdiff = (mean - item)**2
     diff_squared_list += [sqdiff]
-
   variance = sum(diff_squared_list)/n
   compute_sigma = variance**.5
   return compute_sigma
