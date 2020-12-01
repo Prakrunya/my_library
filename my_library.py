@@ -4,7 +4,7 @@ import pandas as pd
 import uo_puddles.uo_puddles as up
 import math
 import spacy, os
-os.system(python -m spacy download en_core_web_md)
+os.system('python -m spacy download en_core_web_md')
 import en_core_web_md
 nlp = en_core_web_md.load()
 import io
