@@ -117,7 +117,7 @@ def all_bayes(training_table, word_bag, bio):
     results += [[result,c]]
   return sorted(results, reverse=True)
 
-def predictions(test_table, training_table, word, target)
+def predictions(test_table, training_table, word, target):
   test_results = []
   n = len(test_table)
   for i in range(n):
@@ -140,11 +140,11 @@ def predictions(test_table, training_table, word, target)
 
 #Data Workup
 
-def data_import(url,file_name)
+def data_import(url,file_name):
   file_name = pd.read_csv(url)
   return file_name.head()
 
-def table_divide(table)
+def table_divide(table):
   table = table.sample(frac=1.0, random_state=1)
   length = len(table)/3 
   test_table = table[:length].reset_index(drop=True)
