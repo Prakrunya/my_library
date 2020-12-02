@@ -153,8 +153,7 @@ def data_import(url,file_name):
 
 def table_divide(table):
   table = table.sample(frac=1.0, random_state=1)
-  length = len(table)/3
-  length = round(length)
+  length = round(len(table)/3)
   test_table = table[:length].reset_index(drop=True)
   training_table = table[table:].reset_index(drop=True)
   return test_table.head()
