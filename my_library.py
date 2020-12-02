@@ -79,27 +79,6 @@ def knn(table, target_list, k):
   sorted_results = sorted(distance_record)
   return sorted_results[:k]
 
-def predictions(test_table, training_table, word, target):
-  test_results = []
-  n = len(test_table)
-  for i in range(n):
-    test_bio = test_table.loc[i, word].lower()
-    results = all_bayes(training_table, word_bag, test_bio)
-    test_results += [results]
-  predictions = []
-  for i in range(n):
-    r = test_results[i]
-    first_pair = r[0]
-    prediction = first_pair[1]
-    predictions += [prediction]
-  n = len(predictions)
-  correct = 0
-  actuals = test_table[target].to_list()
-  for i in range(n):
-    if predictions[i]==actuals[i]:
-      correct += 1
-  return correct/n
-
 #NAIVE BAYES
 
 def process_bio(bio):
@@ -144,6 +123,27 @@ def all_bayes(training_table, word_bag, bio):
     result = naive_bayes(training_table, word_bag, bio, c)
     results += [[result,c]]
   return sorted(results, reverse=True)
+
+def predictions(test_table, training_table, word, target):
+  test_results = []
+  n = len(test_table)
+  for i in range(n):
+    test_bio = test_table.loc[i, word].lower()
+    results = all_bayes(training_table, word_bag, test_bio)
+    test_results += [results]
+  predictions = []
+  for i in range(n):
+    r = test_results[i]
+    first_pair = r[0]
+    prediction = first_pair[1]
+    predictions += [prediction]
+  n = len(predictions)
+  correct = 0
+  actuals = test_table[target].to_list()
+  for i in range(n):
+    if predictions[i]==actuals[i]:
+      correct += 1
+  return correct/n
 
 #Data Workup
 
