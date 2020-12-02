@@ -79,6 +79,21 @@ def knn(table, target_list, k):
   sorted_results = sorted(distance_record)
   return sorted_results[:k]
 
+def count_choices(result_list, choices=['a','b','c']):
+  answer =[]
+  for i in range(len(choices)):
+    choice = choices[i]
+    n =len(result_list)
+    counter = 0
+    for j in range(n):
+      person = result_list[j]
+      s = person[1]
+      if choice == s:
+        counter += 1
+    answer1 = f'{choice} : {counter}'
+    answer += [answer1]
+  return answer
+
 #NAIVE BAYES
 
 def process_bio(bio):
