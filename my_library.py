@@ -105,13 +105,13 @@ def process_bio(bio):
       good_words += [token.text]
   return good_words
 
-def class_probability(training_table, a_class, column):
-  class_list = training_table[column].to_list()  #the Class column as a list
+def class_probability(training_table, a_class):
+  class_list = training_table['Class'].to_list()  #the Class column as a list
   class_count = class_list.count(a_class)
   return class_count/len(class_list)
 
-def word_by_class_probability(training_table, word_bag, word, a_class,column,laplace=1):
-  class_list = training_table[column].to_list()
+def word_by_class_probability(training_table, word_bag, word, a_class, laplace=1):
+  class_list = training_table['Class'].to_list()
   d = len(set(class_list))
   class_count = class_list.count(a_class)  #number of bios of a_class
   word_count = word_bag.loc[word, a_class] if word in word_bag.index else 0 #bios of a_class that used the word
@@ -120,10 +120,10 @@ def word_by_class_probability(training_table, word_bag, word, a_class,column,lap
 def naive_bayes(training_table, word_bag, bio, a_class):
   good_words = process_bio(bio)
   n = len(good_words)
-  numerator_list = [class_probability(training_table, a_class,column)]
+  numerator_list = [class_probability(training_table, a_class)]  #start if off with P(O)
   for i in range(n):
     word = good_words[i]
-    word_class = word_by_class_probability(training_table, word_bag, word, a_class,column)
+    word_class = word_by_class_probability(training_table, word_bag, word, a_class)
     numerator_list += [word_class]
   numerator = 0
   for number in numerator_list:
