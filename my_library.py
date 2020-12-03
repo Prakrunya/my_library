@@ -111,7 +111,7 @@ def class_probability(training_table, a_class):
   class_count = class_list.count(a_class)
   return class_count/len(class_list)
 
-def word_by_class_probability(training_table, word_bag, word, a_class, laplace=0.01):
+def word_by_class_probability(training_table, word_bag, word, a_class, laplace=0.001):
   class_list = training_table['Class'].to_list()
   d = len(set(class_list))
   class_count = class_list.count(a_class)  #number of bios of a_class
