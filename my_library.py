@@ -73,7 +73,7 @@ def knn(table, target_list, k):
     row = table.loc[i].to_list()
     number_list = row[:-1]
     choice = row[-1]  #last thing in list
-    d = euclidean_distance(target_number_list, number_list)
+    d = euclidean_distance(target_list, number_list)
     pair = [d, choice]
     distance_record += [pair]
   sorted_results = sorted(distance_record)
